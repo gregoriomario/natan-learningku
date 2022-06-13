@@ -13,23 +13,28 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse<Data>
 ) {
-	const data = await Course.findAll({
-		raw: true,
-	})
-		.then((d) => {
-			return JSON.parse(JSON.stringify(d));
+	try {
+		const data = await Course.findAll({
+			raw: true,
 		})
-		.catch((err) => console.error(err));
+			.then((d) => {
+				return JSON.parse(JSON.stringify(d));
+			})
+			.catch((err) => console.error(err));
 
-	const result = data.filter((d: D) =>
-		RegExp(String(req.query.q), "i").test(d.course)
-	);
+		const result = data.filter((d: D) =>
+			RegExp(String(req.query.q), "i").test(d.course)
+		);
 
-	//trim result property
-	result.forEach((d: D) => {
-		d.course = d.course.trim();
-		d.page = d.page.trim();
-	});
+		//trim result property
+		result.forEach((d: D) => {
+			d.course = d.course.trim();
+			d.page = d.page.trim();
+		});
 
-	res.status(200).json({ data: result });
+		res.status(200).json({ data: result });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ data: [] });
+	}
 }
