@@ -98,9 +98,12 @@ const Result = ({ data }: ResultProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	const { data } = await axios.get(
-		`${process.env.HOST}/api/hello?q=${context.query.q}`
-	);
+	const { data } = await axios
+		.get(`${process.env.HOST}/api/hello?q=${context.query.q}`)
+		.catch((err) => {
+			console.error(err);
+			return { data: [] };
+		});
 	return {
 		props: {
 			data: data,
