@@ -1,9 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { FormEventHandler, useState } from "react";
 import Logo from "../pages/assets/img/logo.svg";
 
 const Navbar = () => {
+	const [search, setSearch] = useState<string>("");
+
+	const handleSearch = (e: any) => {
+		e.preventDefault();
+		window.location.href = "/search?q=" + search;
+	};
 	return (
 		<header>
 			<nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light">
@@ -50,17 +56,14 @@ const Navbar = () => {
 								</a>
 							</li>
 						</ul>
-						<form
-							className="d-flex"
-							action="/Rancang%20Bangun%20E-Learning/result-course.php"
-							method="post"
-						>
+						<form className="d-flex" onSubmit={handleSearch}>
 							<input
 								className="form-control me-2"
 								type="search"
 								placeholder="Search course here"
 								aria-label="Search"
 								name="keyword"
+								onChange={(e) => setSearch(e.target.value)}
 							/>
 							<button
 								className="btn btn-outline-success"
