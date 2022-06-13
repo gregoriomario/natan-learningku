@@ -13,7 +13,6 @@ type ResultProps = {
 };
 
 const Result = ({ data }: ResultProps) => {
-	console.log(data.data);
 
 	return (
 		<div className="d-flex flex-column h-100">
