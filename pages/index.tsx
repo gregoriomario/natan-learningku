@@ -9,6 +9,7 @@ import PythonLogo from "./assets/img/python.jpg";
 import ReactLogo from "./assets/img/react.jpg";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
+import Button from "../components/Button";
 
 type CardType = {
 	logo: StaticImageData;
@@ -51,12 +52,20 @@ const cards: CardType[] = [
 
 const Home: NextPage = () => {
 	return (
-		<div>
+		<div className="font-sans">
 			<Navbar />
-			<main>
-				<div className="container col-xxl-8 px-4 py-5">
-					<div className="row flex-lg-row-reverse align-items-center g-5 py-5 pt-5 mt-5">
-						<div className="col-10 col-sm-8 col-lg-6">
+			<main className="px-24 py-24 w-full">
+				<div className="flex w-full px-20 py-5  relative">
+					<div className="w-full flex justify-between">
+						<div className="flex flex-col justify-center">
+							<h1 className="font-bold text-6xl mb-3">LearningKu</h1>
+							<p className="text-lg mb-3">
+								Ayo mulai belajar di website ini dengan course gratis tetapi
+								berkualitas
+							</p>
+							<Button className="w-fit text-lg">Yuk Mulai!</Button>
+						</div>
+						<div className="w-full flex justify-end col-10 col-sm-8 col-lg-6">
 							<Image
 								src={Study}
 								className="d-block mx-lg-auto img-fluid"
@@ -66,25 +75,10 @@ const Home: NextPage = () => {
 								loading="lazy"
 							/>
 						</div>
-						<div className="col-lg-6">
-							<h1 className="display-5 fw-bold lh-1 mb-3">LearningKu</h1>
-							<p className="lead">
-								Ayo mulai belajar di website ini dengan course gratis tetapi
-								berkualitas
-							</p>
-							<div className="d-grid gap-2 d-md-flex justify-content-md-start">
-								<button
-									type="button"
-									className="btn btn-primary btn-lg px-4 me-md-2 mt-2"
-								>
-									Yuk Mulai!
-								</button>
-							</div>
-						</div>
 					</div>
 				</div>
 
-				<div className="px-4 py-5 my-5 text-center">
+				<div className="text-center my-24">
 					<Image
 						className="d-block mx-auto"
 						src={Logo}
@@ -92,7 +86,7 @@ const Home: NextPage = () => {
 						width="72"
 						height="57"
 					/>
-					<h1 className="display-5 fw-bold">About</h1>
+					<h2 className="font-bold text-4xl mb-3">About</h2>
 					<div className="col-lg-6 mx-auto">
 						<p className="lead mb-4">
 							Kami menyediakan course gratis yang bisa diakses kapan saja
@@ -102,14 +96,14 @@ const Home: NextPage = () => {
 					</div>
 				</div>
 
-				<div className="container mt-5">
+				<div className=" mt-5 w-full">
 					<div className="row mb-4">
 						<div className="col-lg-8 mx-auto text-center">
-							<h2 className="fs-1">Course</h2>
+							<h2 className="font-bold text-4xl mb-3">Course</h2>
 							<p className="mb-0">Pilih course yang ada dibawah ini</p>
 						</div>
 					</div>
-					<div className="row justify-content-center">
+					<div className="grid gap-x-10 grid-cols-3">
 						{cards.map((card, index) => {
 							return <Card key={card.title} {...card} />;
 						})}

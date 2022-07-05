@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Sequelize } from "sequelize/types";
 import Course from "../../model/Course.model";
 
 type Data = {
+	success?: boolean;
 	data: Array<D>;
 };
 
@@ -22,17 +22,22 @@ export default async function handler(
 			})
 			.catch((err) => console.error(err));
 
-		const result = data.filter((d: D) =>
+		let result = data.filter((d: D) =>
 			RegExp(String(req.query.q), "i").test(d.course)
 		);
+
+		if (result.length === 0) {
+			result = data;
+		}
 
 		//trim result property
 		result.forEach((d: D) => {
 			d.course = d.course.trim();
 			d.page = d.page.trim();
+			d.logo = d.logo.trim();
 		});
 
-		res.status(200).json({ data: result });
+		res.status(200).json({ success: true, data: result });
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ data: [] });

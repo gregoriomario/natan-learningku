@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { FormEventHandler, useState } from "react";
 import Logo from "../pages/assets/img/logo.svg";
+import Button from "./Button";
 
 const Navbar = () => {
 	const [search, setSearch] = useState<string>("");
@@ -12,18 +13,19 @@ const Navbar = () => {
 	};
 	return (
 		<header>
-			<nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-				<div className="container-fluid">
+			<nav className=" w-full fixed navbar-light bg-white flex z-50 px-24 py-4 shadow-md">
+				<div className="flex w-full">
 					<Link href="/">
-						<div className="d-flex align-items-center">
-							<Image
-								src={Logo}
-								alt="logo"
-								width="30"
-								height="30"
-								className="d-inline-block align-text-top"
-							/>
-							LearningKu
+						<div className="flex pr-3 items-center cursor-pointer">
+							<div className="w-10 h-10 mr-3 relative">
+								<Image
+									src={Logo}
+									alt="logo"
+									layout="fill" // required
+								/>
+							</div>
+
+							<p> LearningKu</p>
 						</div>
 					</Link>
 
@@ -38,40 +40,34 @@ const Navbar = () => {
 					>
 						<span className="navbar-toggler-icon"></span>
 					</button>
-					<div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-						<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-							<li className="nav-item">
+					<div className=" flex justify-between w-full items-center">
+						<ul className="flex ">
+							<li className="nav-item mx-2">
 								<a className="nav-link active" aria-current="page" href="#">
 									Home
 								</a>
 							</li>
-							<li className="nav-item">
+							<li className="nav-item mx-2">
 								<a className="nav-link active" href="#">
 									About
 								</a>
 							</li>
-							<li className="nav-item">
+							<li className="nav-item mx-2">
 								<a className="nav-link active" href="#">
 									Course
 								</a>
 							</li>
 						</ul>
-						<form className="d-flex" onSubmit={handleSearch}>
+						<form className="flex" onSubmit={handleSearch}>
 							<input
-								className="form-control me-2"
+								className="border rounded-lg px-3 mr-2"
 								type="search"
 								placeholder="Search course here"
 								aria-label="Search"
 								name="keyword"
 								onChange={(e) => setSearch(e.target.value)}
 							/>
-							<button
-								className="btn btn-outline-success"
-								name="search"
-								type="submit"
-							>
-								Search
-							</button>
+							<Button>Search</Button>
 						</form>
 					</div>
 				</div>

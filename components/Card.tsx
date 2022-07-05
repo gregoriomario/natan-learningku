@@ -10,19 +10,24 @@ type CardProps = {
 
 const Card = ({ title, logo, description }: CardProps) => {
 	return (
-		<div className="col-md-4 mb-4">
-			<div className="card shadow text-center h-100">
-				<Image src={logo} className="card-img-top" alt="js" />
-				<div className="card-body">
-					<a
-						className="stretched-link"
-						href={`learn/${title.toLowerCase()}`}
-					></a>
-					<h5 className="card-title">{title}</h5>
-					<p className="card-text">{description}</p>
+		<a className="mb-4" href={`learn/${title.toLowerCase()}`}>
+			<div className="shadow text-center h-96">
+				<div className="w-full h-48 relative">
+					<Image
+						src={logo}
+						alt="js"
+						layout="fill" // required
+						objectFit="cover" // change to suit your needs
+					/>
+				</div>
+
+				<div className="card-body mx-10 h-full">
+					<div className="stretched-link"></div>
+					<h5 className="card-title font-bold">{title}</h5>
+					<p className="text-base h-full">{description}</p>
 				</div>
 			</div>
-		</div>
+		</a>
 	);
 };
 
