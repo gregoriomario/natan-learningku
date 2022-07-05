@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
 	reactStrictMode: true,
+	compress: true,
 };
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
